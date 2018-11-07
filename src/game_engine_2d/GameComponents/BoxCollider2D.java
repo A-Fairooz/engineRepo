@@ -1,4 +1,9 @@
-package game_engine_2d;
+package game_engine_2d.GameComponents;
+
+import game_engine_2d.GameObject;
+import game_engine_2d.ProcessingEntity;
+import game_engine_2d.SIDES;
+import game_engine_2d.Transform;
 
 public class BoxCollider2D extends ProcessingEntity{
 	

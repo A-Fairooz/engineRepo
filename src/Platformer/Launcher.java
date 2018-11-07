@@ -13,13 +13,14 @@ public class Launcher extends BaseLauncher {
 	public void StartGame() {
 		super.StartGame();
 		Player player = new Player(parent,parent.width/2, parent.height/2,60,60);
-		Enemy enemy = new Enemy(parent,parent.width/2, parent.height/2,60,60);
+		//Enemy enemy = new Enemy(parent,parent.width/2, parent.height/2,60,60);
 		player.start();
-		enemy.start();
+		//enemy.start();
 		this.gameManager.addObject(player);
 		this.gameManager.addPlayerGameObjects(player);
-		this.gameManager.addObject(enemy);
-		this.gameManager.addEnemyGameObjects(enemy);
+		//this.gameManager.addObject(enemy);
+		//this.gameManager.addEnemyGameObjects(enemy);
+		
 		Camera2D camera = new Camera2D(parent,player,99);
 		camera.cameraOffset.y = 90;
 		this.gameManager.addObject(camera);

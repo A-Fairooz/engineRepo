@@ -1,5 +1,7 @@
-package game_engine_2d;
+package game_engine_2d.GameComponents;
 
+import game_engine_2d.GameManager;
+import game_engine_2d.GameObject;
 import processing.core.PApplet;
 import processing.core.PVector;
 

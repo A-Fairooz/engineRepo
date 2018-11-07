@@ -1,6 +1,7 @@
 package Platformer;
 
 import game_engine_2d.*;
+import game_engine_2d.GameComponents.Physics2D;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -24,13 +25,14 @@ public class Enemy extends Sprite {
 	}
 		
 		public void start() {
-			this.transform.position.x = (parent.width / 2) + 24;
+			this.transform.position.x = 400;//(parent.width / 2) + 24;
 			
-			this.transform.position.y = parent.height / 2;
+			this.transform.position.y = 500;//parent.height / 2;
 			
 			//spawnPoint = this.transform.position;
 					
 			this.transform.boundingBox.fromSize(size);
+			
 			this.physics = new Physics2D(this);
 			this.physics.start();
 			this.physics.speed = speedForce;
