@@ -1,18 +1,19 @@
 package Platformer;
 
-import game_engine_2d.Sprite;
+import game_engine_2d.*;
 import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Player extends Sprite{
-
-	float speed = 3f;
-	float gravity = 0.1f;
 	
-	private PVector velocity = new PVector(0,0);
+	
 	private PVector size = new PVector (12,12);
 	public int stroke = parent.color(120,120,255);
-	public int fill = parent.color(255);
+	public int fill = parent.color(255);	
+	private Physics2D physics;
+	float speedForce = 3f;
+	float jumpForce = 3f;
+	public PVector spawnPoint = new PVector(0,0);
 	
 	public Player(PApplet p) {
 		super(p);
@@ -20,17 +21,25 @@ public class Player extends Sprite{
 
 	public Player(PApplet p, float x, float y, float w, float h) {
 		super(p);
-		//speed = 3.0f;
+		
 	}
 	public void start() {
 		this.transform.position.x = parent.width / 2;
+		spawnPoint.x = parent.width / 2;
 		this.transform.position.y = parent.height / 2;
+		spawnPoint.y = parent.height / 2;
+		//spawnPoint = this.transform.position;
+				
+		this.transform.boundingBox.fromSize(size);
+		this.physics = new Physics2D(this);
+		this.physics.start();
+		this.physics.speed = speedForce;
 	}
 	
 	@Override
 	public void update() {
-		velocity.y += this.gravity;
-		this.transform.position.y += velocity.y;
+		super.update();
+		
 	}
 	
 	@Override
@@ -40,8 +49,36 @@ public class Player extends Sprite{
 		parent.rect(this.transform.position.x,
 					this.transform.position.y,
 					this.size.x,
-					this.size.z);
+					this.size.y);
 		
 	}
-	
+	public void keyPressed(char key, int keyCode) {
+		// mapped key pressed
+		super.keyPressed(key, keyCode);
+		   if (keyCode == PApplet.UP) 
+		   {
+			this.physics.jump(jumpForce);					
+		   }
+		   
+		   if (keyCode == PApplet.LEFT) 
+		   {
+			this.physics.move(-speedForce);
+		   }
+		   
+		   if (keyCode == PApplet.RIGHT) 
+		   {
+			this.physics.move(speedForce);
+		   }
+		   
+		   if(keyCode == PApplet.BACKSPACE) 
+		   {
+			   this.transform.position = spawnPoint;
+		   }
+		   
+		   
+	}
+
+	public void keyReleased(char key, int keyCode) {
+		this.physics.keyUp();
+	}
 }

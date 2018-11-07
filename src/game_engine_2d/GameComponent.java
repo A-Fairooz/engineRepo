@@ -1,6 +1,6 @@
 package game_engine_2d;
 
-import processing.core.PApplet;
+
 
 public abstract class GameComponent extends ProcessingEntity {
 
