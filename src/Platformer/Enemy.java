@@ -31,8 +31,7 @@ public class Enemy extends Sprite {
 			
 			//spawnPoint = this.transform.position;
 					
-			this.transform.boundingBox.fromSize(size);
-			
+			this.transform.boundingBox.fromSize(size);			
 			this.physics = new Physics2D(this);
 			this.physics.start();
 			this.physics.speed = speedForce;
