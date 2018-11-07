@@ -1,4 +1,4 @@
-package game_engine_2d.GameComponents;
+package gameComponents;
 
 import game_engine_2d.GameObject;
 import game_engine_2d.ProcessingEntity;

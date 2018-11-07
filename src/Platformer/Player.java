@@ -1,7 +1,7 @@
 package Platformer;
 
+import gameComponents.Physics2D;
 import game_engine_2d.*;
-import game_engine_2d.GameComponents.Physics2D;
 import processing.core.PApplet;
 import processing.core.PVector;
 

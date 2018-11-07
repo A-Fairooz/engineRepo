@@ -1,7 +1,7 @@
 
 package game_engine_2d;
 
-import game_engine_2d.GameComponents.BoundingBox;
+import gameComponents.BoundingBox;
 import processing.core.PVector;
 
 
