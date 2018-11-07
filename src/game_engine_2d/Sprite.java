@@ -1,7 +1,7 @@
 package game_engine_2d;
 
 import processing.core.PVector;
-import gameComponents.GameComponent;
+import game_engine_2d.GameComponent;
 import processing.core.PApplet;
 
 public abstract class Sprite extends GameObject {

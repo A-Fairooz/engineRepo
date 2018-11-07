@@ -2,7 +2,7 @@ package game_engine_2d;
 import processing.core.*;
 import java.util.ArrayList;
 
-import gameComponents.BoundingBox;
+import game_engine_2d.BoundingBox;
 
 public class GameManager extends ProcessingEntity{
 	

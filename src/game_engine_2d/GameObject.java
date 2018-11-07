@@ -2,8 +2,8 @@ package game_engine_2d;
 import processing.core.PApplet;
 import java.util.ArrayList;
 
-import gameComponents.BoundingBox;
-import gameComponents.GameComponent;
+import game_engine_2d.BoundingBox;
+import game_engine_2d.GameComponent;
 
 public abstract class GameObject extends ProcessingEntity {
 	public GameObject(PApplet p) {

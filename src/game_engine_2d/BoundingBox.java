@@ -1,4 +1,4 @@
-package gameComponents;
+package game_engine_2d;
 import processing.core.PVector;
 
 public class BoundingBox {
