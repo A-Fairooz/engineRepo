@@ -19,7 +19,7 @@ public class Physics2D extends GameComponent{
 	float frictionOverride = 1;
 	float frictionNormal = 0.9f;
 	boolean isGrounded =false;
-	public float speed = 3f;
+	public float speed = 5f;
 	public float maxSpeed = 5f;
 	public int collisionCount = 0;
 	
@@ -50,6 +50,7 @@ public class Physics2D extends GameComponent{
 		 if(this.velocity.x > 0) 
 			{
 				this.velocity.x = maxSpeed;
+				parent.println("MAX SPEED");
 			}
 			
 		 else
@@ -58,7 +59,7 @@ public class Physics2D extends GameComponent{
 			}
 		}
 		
-		 if(isGrounded && PApplet.abs(velocity.x) <=0.1) {
+		 if(isGrounded && PApplet.abs(velocity.x) <=0.01) {
 			 this.velocity.x = 0f;
 		}
 		 this.transform.position.add(velocity);
@@ -151,14 +152,16 @@ public class Physics2D extends GameComponent{
 	
 	public void move(float force) {
 		//if (isGrounded) {
+		    this.velocity.x += force;
 			this.friction = this.frictionOverride;
-			this.velocity.x += force;
+			
 		//}
 	}
 	
 	public void keyUp() {
-		if(isGrounded) {
-			//this.friction =this.frictionNormal;
+		this.friction =this.frictionNormal;
+		if(isGrounded) {			
+			this.velocity.x = 0;
 		}
 	}
 

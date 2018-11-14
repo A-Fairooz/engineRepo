@@ -12,8 +12,8 @@ public class Player extends Sprite{
 	public int stroke = parent.color(120,120,255);
 	public int fill = parent.color(255);	
 	private Physics2D physics;
-	float speedForce = 3f;
-	float jumpForce = 3f;
+	float speedForce = 5f;
+	float jumpForce = 7f;
 	public PVector spawnPoint = new PVector(0,0);
 	
 	public Player(PApplet p) {
