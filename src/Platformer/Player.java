@@ -4,7 +4,7 @@ import game_engine_2d.Physics2D;
 import game_engine_2d.*;
 import processing.core.PApplet;
 import processing.core.PVector;
-
+//import java.lang.*;
 public class Player extends Sprite{
 	
 	
@@ -31,7 +31,7 @@ public class Player extends Sprite{
 		spawnPoint.y = parent.height / 2;
 		//spawnPoint = this.transform.position;
 				
-		this.transform.boundingBox.fromSize(size);
+		this.transform.localBoundingBox.fromSize(size);
 		this.physics = new Physics2D(this);
 		this.physics.start();
 		this.physics.speed = speedForce;
@@ -40,7 +40,7 @@ public class Player extends Sprite{
 	@Override
 	public void update() {
 		super.update();
-		
+		//System.out.println("test");
 	}
 	
 	@Override
@@ -58,12 +58,14 @@ public class Player extends Sprite{
 		super.keyPressed(key, keyCode);
 		   if (keyCode == PApplet.UP) 
 		   {
+			   
 			this.physics.jump(jumpForce);					
 		   }
 		   
 		   if (keyCode == PApplet.LEFT) 
 		   {
 			this.physics.move(-speedForce);
+			System.out.println("test");
 		   }
 		   
 		   if (keyCode == PApplet.RIGHT) 

@@ -34,7 +34,7 @@ public class BoxCollider2D extends ProcessingEntity{
 				hitInfo.didHit = true;
 			}
 		}
-		if (new_bb.right > tile_bb.left && new_bb.left < tile_bb.right) {
+		else if (new_bb.right > tile_bb.left && new_bb.left < tile_bb.right) {
 			// game sprite is OVER tile_bb
 			if (new_bb.bottom > tile_bb.top && prev_bb.top < tile_bb.top) {
 				 //collision down

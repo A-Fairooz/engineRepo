@@ -6,11 +6,12 @@ public class BoundingBox {
 		
 	}
 
-	public BoundingBox(int leftSide, int rghtSide, int topSide, int botSide) {
-		left = leftSide;
-		right = rghtSide;
-		top = topSide;
-		bottom = botSide;
+	public BoundingBox(int _l, int _r, int _t, int _b) {
+
+		this.left = _l;
+		this.right = _r;
+		this.top = _t;
+		this.bottom = _b;
 		this.center_x = 0;
 		this.center_y = 0;
 	}

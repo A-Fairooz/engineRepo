@@ -25,7 +25,7 @@ public class Tile extends Sprite {
 
 	public void start() {
 		super.start();
-		this.transform.boundingBox.fromSize(size);
+		this.transform.localBoundingBox.fromSize(size);
 	}
 	
 	@Override

@@ -30,7 +30,7 @@ public class Enemy extends Sprite {
 			this.transform.position.y = 500;//parent.height / 2;
 			
 			//spawnPoint = this.transform.position;					
-			this.transform.boundingBox.fromSize(size);			
+			this.transform.localBoundingBox.fromSize(size);			
 			this.physics = new Physics2D(this);
 			this.physics.start();
 			this.physics.speed = speedForce;

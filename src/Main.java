@@ -7,19 +7,23 @@ public class Main extends PApplet{
 		PApplet.main("Main");
 	
 	}
-	Launcher launcher;
+	public Launcher launcher;
 	
 	public void setup() {
 		background(0);
 		frameRate = 60;
 		launcher = new Launcher(this);
-		launcher.StartGame();
+		
 		
 		
 	}
 	
 	public void draw() {
-	launcher.UpdateAll();
+		launcher.StartGame();
+		if(launcher.started) {
+			launcher.UpdateAll();
+		}
+	
 	}
 	
 	

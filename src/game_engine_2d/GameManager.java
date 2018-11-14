@@ -3,6 +3,7 @@ import processing.core.*;
 import java.util.ArrayList;
 
 import game_engine_2d.BoundingBox;
+import game_engine_2d.BasicSpatialGrid;
 
 public class GameManager extends ProcessingEntity{
 	
@@ -11,20 +12,28 @@ public class GameManager extends ProcessingEntity{
 	public int background = 0;
 	private ArrayList<GameObject> gameObjects;
 	private ArrayList<GameObject> playerGameObjects;
-	private ArrayList<GameObject> enemyGameObjects;
+	//private ArrayList<GameObject> enemyGameObjects;
 	public static ArrayList<BoundingBox> gameBoundingBoxes;
 	public static int frameCount = 0;
 	public static PVector offset = new PVector(0,0);
 	public static PVector screenOffset = new PVector(0,0);
+	public static BasicSpatialGrid basicSpatialGrid;
+	
+	
 	public GameManager(PApplet p) {
 	super(p);
 	this.name = "GameManager";
-	gameObjects = new ArrayList<GameObject>();
-	playerGameObjects = new ArrayList<GameObject>();
-	enemyGameObjects = new ArrayList<GameObject>();
-	gameBoundingBoxes = new ArrayList<BoundingBox>();
+	
 	screenOffset.x = parent.width/2;
 	screenOffset.y = parent.height/2;
+	this.Init();
+	}
+	
+	public void Init() {
+		gameObjects = new ArrayList<GameObject>();
+		playerGameObjects = new ArrayList<GameObject>();
+		gameBoundingBoxes = new ArrayList<BoundingBox>();
+		//enemyGameObjects = new ArrayList<GameObject>();
 	}
 
 	public void addGameBoundingBoxes(GameObject b) {
@@ -33,9 +42,9 @@ public class GameManager extends ProcessingEntity{
 	public void addPlayerGameObjects(GameObject b) {
 		playerGameObjects.add(b);
 	}
-	public void addEnemyGameObjects(GameObject b) {
-		enemyGameObjects.add(b);
-	}
+	//public void addEnemyGameObjects(GameObject b) {
+	//	enemyGameObjects.add(b);
+	//}
 	
 	public void addObject(GameObject g) {
 		gameObjects.add(g);
@@ -49,6 +58,7 @@ public class GameManager extends ProcessingEntity{
 			GameObject g = gameObjects.get(i);
 			g.start();
 		}
+		basicSpatialGrid = new BasicSpatialGrid(parent.height,2);
 	}
 	public void UpdateAll() {
 		parent.pushMatrix();
