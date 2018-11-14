@@ -20,7 +20,6 @@ public class Tile extends Sprite {
 		this.strokeColour = parent.color(strokeColour);
 		this.fillColour = parent.color(fColour1, fColour2, fColour3);
 		
-
 	}
 
 	public void start() {
