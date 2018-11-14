@@ -28,7 +28,7 @@ public class Main extends PApplet{
 	
 	
 	public void settings() {
-		size(800,800);
+		size(800,600);
 	}
 
 	public void keyPressed() {

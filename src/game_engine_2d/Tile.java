@@ -13,12 +13,12 @@ public class Tile extends Sprite {
 	
 
 	 
-	public Tile(PApplet p, float x, float y, float w, float h) {
+	public Tile(PApplet p, float x, float y, float w, float h, float fColour1,float fColour2,float fColour3, float strokeColour) {
 		super(p, x, y);
 		this.size.x = w;
 		this.size.y = h;
-		this.strokeColour = parent.color(255, 255, 255);
-		this.fillColour = parent.color(0, 0, 0);
+		this.strokeColour = parent.color(strokeColour);
+		this.fillColour = parent.color(fColour1, fColour2, fColour3);
 		
 
 	}

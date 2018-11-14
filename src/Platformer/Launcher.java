@@ -53,25 +53,26 @@ public class Launcher extends BaseLauncher {
 		Camera2D camera = new Camera2D(parent, player, 99);
 		camera.cameraOffset.y = 90;
 		this.gameManager.addObject(camera);
-		int platforms = 500;
-		int tw = 50;
-		int th = 20;
-		int numPlatformsX = 2 * parent.width / tw;
+		int platforms = 10000;
+		int tw = parent.height /10;
+		int th = parent.width / 40;
+		int numPlatformsX = 2* parent.width / tw;
 		int numPlatformsY = 2 * parent.height / th;
 		
 		Tile platform;
 		for (int i = 0; i < platforms; i++) {
 		int x = (int) parent.random(0, numPlatformsX) * tw;
 		int y = (int) parent.random(-numPlatformsY, numPlatformsY) * th;
-		platform = new Tile(parent, x, y, tw, th);
+		platform = new Tile(parent, x, y, tw, th, parent.random(0, 255),parent.random(0, 255),parent.random(0, 255),parent.random(255));
 		platform.start();
 		this.gameManager.addObject(platform);
 		this.gameManager.addGameBoundingBoxes(platform);
 		}
 		
+		
 
-		for (int i = 0; i < 40; i++) {
-			platform = new Tile(parent, i * tw, parent.height * 2, tw, th);
+		for (int i = 0; i < 80; i++) {
+			platform = new Tile(parent, i * tw , parent.height * 2, tw, th, parent.random(255),parent.random(255),parent.random(255),255);
 			platform.start();
 			platform.strokeColour = parent.color(0, 200, 200);
 			platform.fillColour = parent.color(0, 200, 200);
@@ -81,7 +82,7 @@ public class Launcher extends BaseLauncher {
 
 		// left
 		for (int i = 0; i < 200; i++) {
-			platform = new Tile(parent, 0, (-parent.height * 3) + (th + 2) * i, tw, th);
+			platform = new Tile(parent, 0, (-parent.height * 3) + (th) * i, tw, th, parent.random(150, 255),parent.random(150, 255),parent.random(150, 255),255);
 			platform.start();
 			platform.strokeColour = parent.color(0, 200, 200);
 			platform.fillColour = parent.color(0, 200, 200);
@@ -90,7 +91,7 @@ public class Launcher extends BaseLauncher {
 		}
 		// right
 		for (int i = 0; i < 200; i++) {
-			platform = new Tile(parent, parent.width * 2, (-parent.height * 3) + th * i, tw, th);
+			platform = new Tile(parent, parent.width*2, (-parent.height * 3) + (th) * i, tw, th, parent.random(150, 255),parent.random(150, 255),parent.random(150, 255),255);
 			platform.start();
 			platform.strokeColour = parent.color(0, 200, 200);
 			platform.fillColour = parent.color(0, 200, 200);
