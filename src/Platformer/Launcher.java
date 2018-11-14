@@ -70,7 +70,6 @@ public class Launcher extends BaseLauncher {
 		}
 		
 		
-
 		for (int i = 0; i < 80; i++) {
 			platform = new Tile(parent, i * tw , parent.height * 2, tw, th, parent.random(255),parent.random(255),parent.random(255),255);
 			platform.start();
