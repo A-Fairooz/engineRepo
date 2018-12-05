@@ -50,7 +50,7 @@ public class Physics2D extends GameComponent{
 		 if(this.velocity.x > 0) 
 			{
 				this.velocity.x = maxSpeed;
-				parent.println("MAX SPEED");
+				//parent.println("MAX SPEED");
 			}
 			
 		 else

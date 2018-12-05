@@ -12,7 +12,7 @@ public class Player extends Sprite{
 	public int stroke = parent.color(120,120,255);
 	public int fill = parent.color(255);	
 	private Physics2D physics;
-	float speedForce = 5f;
+	float speedForce = 10f;
 	float jumpForce = 7f;
 	public PVector spawnPoint = new PVector(0,0);
 	
@@ -47,7 +47,7 @@ public class Player extends Sprite{
 	public void render () {
 		parent.fill(this.fill);
 		parent.stroke(this.stroke);
-		parent.rect(this.transform.position.x,
+		parent.ellipse(this.transform.position.x,
 					this.transform.position.y,
 					this.size.x,
 					this.size.y);
@@ -56,6 +56,9 @@ public class Player extends Sprite{
 	public void keyPressed(char key, int keyCode) {
 		// mapped key pressed
 		super.keyPressed(key, keyCode);
+		
+		
+		
 		   if (keyCode == PApplet.UP) 
 		   {
 			   

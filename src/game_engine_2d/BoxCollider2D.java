@@ -45,7 +45,8 @@ public class BoxCollider2D extends ProcessingEntity{
 				hitInfo.hitSide = SIDES.TOP;
 				hitInfo.didHit = true;
 			}
-		}else {
+		}
+		else {
 			
 		}
 		return hitInfo;

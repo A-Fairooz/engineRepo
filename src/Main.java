@@ -1,12 +1,12 @@
 import processing.core.PApplet;
 import Platformer.Launcher;
-public class Main extends PApplet{
 
-	public static void main(String[] args) {
-		
+public class Main extends PApplet{
+	public static void main(String[] args) {		
 		PApplet.main("Main");
 	
 	}
+	
 	public Launcher launcher;
 	
 	public void setup() {

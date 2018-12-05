@@ -53,13 +53,15 @@ public class Launcher extends BaseLauncher {
 		Camera2D camera = new Camera2D(parent, player, 99);
 		camera.cameraOffset.y = 90;
 		this.gameManager.addObject(camera);
-		int platforms = 10000;
-		int tw = parent.height /10;
-		int th = parent.width / 40;
+		int platforms = 100;
+		int th = parent.height /30;
+		int tw = parent.width / 30;
 		int numPlatformsX = 2* parent.width / tw;
 		int numPlatformsY = 2 * parent.height / th;
+		int wbHeightWidth = 400;
 		
 		Tile platform;
+		/*
 		for (int i = 0; i < platforms; i++) {
 		int x = (int) parent.random(0, numPlatformsX) * tw;
 		int y = (int) parent.random(-numPlatformsY, numPlatformsY) * th;
@@ -68,10 +70,11 @@ public class Launcher extends BaseLauncher {
 		this.gameManager.addObject(platform);
 		this.gameManager.addGameBoundingBoxes(platform);
 		}
+		*/
 		
-		
-		for (int i = 0; i < 80; i++) {
-			platform = new Tile(parent, i * tw , parent.height * 2, tw, th, parent.random(255),parent.random(255),parent.random(255),255);
+		//bottom
+		for (int i = 0; i < wbHeightWidth; i++) {
+			platform = new Tile(parent, i * tw , parent.height , tw, th,255);
 			platform.start();
 			platform.strokeColour = parent.color(0, 200, 200);
 			platform.fillColour = parent.color(0, 200, 200);
@@ -80,23 +83,30 @@ public class Launcher extends BaseLauncher {
 		}
 
 		// left
-		for (int i = 0; i < 200; i++) {
-			platform = new Tile(parent, 0, (-parent.height * 3) + (th) * i, tw, th, parent.random(150, 255),parent.random(150, 255),parent.random(150, 255),255);
+		for (int i = 0; i < wbHeightWidth; i++) {
+			platform = new Tile(parent, 0, parent.height  - (th) * i, tw, th, 255);
 			platform.start();
 			platform.strokeColour = parent.color(0, 200, 200);
 			platform.fillColour = parent.color(0, 200, 200);
 			this.gameManager.addObject(platform);
 			this.gameManager.addGameBoundingBoxes(platform);
 		}
+		
+		
+		
+		
+		/*
 		// right
 		for (int i = 0; i < 200; i++) {
-			platform = new Tile(parent, parent.width*2, (-parent.height * 3) + (th) * i, tw, th, parent.random(150, 255),parent.random(150, 255),parent.random(150, 255),255);
+			platform = new Tile(parent, parent.width, (-parent.height) + (th) * i, tw, th, parent.random(150, 255),parent.random(150, 255),parent.random(150, 255),255);
 			platform.start();
 			platform.strokeColour = parent.color(0, 200, 200);
 			platform.fillColour = parent.color(0, 200, 200);
 			this.gameManager.addObject(platform);
 			this.gameManager.addGameBoundingBoxes(platform);
+			
 		}
+		*/
 
 		
 		

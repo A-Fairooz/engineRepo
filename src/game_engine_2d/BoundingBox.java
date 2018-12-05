@@ -23,7 +23,9 @@ public class BoundingBox {
 		this.center_x = 0;
 		this.center_y = 0;
 	}
-
+public String toString() {
+	return (int)this.left + "," + (int)this.right + "," + (int)this.top + "," + (int)this.bottom;
+}
 	public float center_x;
 	public float center_y;
 	public float left;
