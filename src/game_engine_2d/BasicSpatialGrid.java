@@ -57,8 +57,8 @@ public class BasicSpatialGrid {
 
 	private void makeSpatialGrid() {
 		gridSize = height/gridRes;
-		gridLengthX = PApplet.floor(globalMax.x/gridSize);
-		gridLengthY = PApplet.floor(globalMax.y/gridSize);
+		gridLengthX = PApplet.floor(globalMax.x/gridSize) +100;
+		gridLengthY = PApplet.floor(globalMax.y/gridSize) +100;
 		spatialGridCells = new ArrayList<SpatialGridCell>();
 		for(int x = 0; x <=gridLengthX; x++) {
 			for(int y=0; y<=gridLengthY;y++){

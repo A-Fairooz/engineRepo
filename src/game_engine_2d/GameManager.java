@@ -53,6 +53,19 @@ public class GameManager extends ProcessingEntity{
 		gameObjects.remove(gameObjects.lastIndexOf(g));
 	}
 	
+	public void replaceObjects(ArrayList<GameObject> _gameObjects) {
+		gameObjects = _gameObjects;
+	}
+	
+	public void replacePlayerObjects(ArrayList<GameObject> _gameObjects) {
+		playerGameObjects = _gameObjects;
+	}
+	
+	public void replaceBoundingBoxes(ArrayList<BoundingBox> _boundingBoxes) {
+		gameBoundingBoxes = _boundingBoxes;
+	}
+	
+	
 	public void StartAll() {
 		for(int i = 0; i < gameObjects.size(); i++) {
 			GameObject g = gameObjects.get(i);
