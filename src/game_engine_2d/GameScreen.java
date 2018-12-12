@@ -15,7 +15,7 @@ public abstract class GameScreen extends ProcessingEntity{
 	protected ArrayList<BoundingBox> gameBoundingBoxes;
 	protected GameManager gameManager;
 	protected boolean ready = false;
-	protected boolean activated = false;
+	public boolean activated = false;
 	
 	public GameScreen(PApplet p) {
 		super(p);
@@ -45,7 +45,7 @@ public abstract class GameScreen extends ProcessingEntity{
 	public abstract void mousePressed();
 	public abstract void mouseClicked();
 	
-	public void extiScreensAdd(GameScreen _screen) {
+	public void exitScreensAdd(GameScreen _screen) {
 		this.exitScreens.add(_screen);
 	}
 	

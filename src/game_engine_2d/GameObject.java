@@ -22,6 +22,8 @@ public abstract class GameObject extends ProcessingEntity {
 	public void checkCollisions( BoundingBox bc) {}
 	public void keyPressed(char key, int keyCode) {}
 	public void keyReleased(char key, int keyCode) {}
+	public void mousePressed() {}
+	public void mouseClicked() {}
 	public String ToString() {
 		return this.name;
 	}

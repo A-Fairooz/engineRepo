@@ -19,11 +19,8 @@ public class Main extends PApplet{
 	}
 	
 	public void draw() {
-		launcher.StartGame();
-		if(launcher.started) {
-			launcher.UpdateAll();
-		}
 	
+		launcher.UpdateAll();
 	}
 	
 	
@@ -38,6 +35,8 @@ public class Main extends PApplet{
 	public void keyReleased() {
 		launcher.keyReleased(key, keyCode);
 	}
-	
+	public void mousePressed()   { 
+		launcher.mousePressed(); 
+		}
 	
 }

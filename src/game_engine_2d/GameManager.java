@@ -100,4 +100,27 @@ public class GameManager extends ProcessingEntity{
 			g.keyReleased(key, keyCode);
 			}
 		}
+
+	public void mousePressed() {
+		for(int i = 0; i < playerGameObjects.size(); i++) {
+			GameObject g = playerGameObjects.get(i);
+			g.mousePressed();
+		}
+	}
+	public void mouseClicked() {
+		for(int i = 0; i < playerGameObjects.size(); i++) {
+			GameObject g = playerGameObjects.get(i);
+			g.mouseClicked();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
