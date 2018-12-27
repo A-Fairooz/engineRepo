@@ -11,7 +11,7 @@ import processing.core.PApplet;
 
 public class StartScreen extends GameScreen {
 	
-	menuMaker menuMaker;
+	menuMaker MenuMaker;
 
 	public StartScreen(PApplet p, GameManager _gameManager) {
 		super(p, _gameManager);
@@ -22,9 +22,9 @@ public class StartScreen extends GameScreen {
 	public void start() {
 		super.start();
 		
-		menuMaker = new menuMaker(parent, this.exitScreens);
-		menuMaker.start();
-		this.gameObjects.add(menuMaker);
+		MenuMaker = new menuMaker(parent, this.exitScreens);
+		MenuMaker.start();
+		this.gameObjects.add(MenuMaker);
 		this.ready = true;
 		this.activate();
 	}
@@ -32,7 +32,16 @@ public class StartScreen extends GameScreen {
 	@Override
 	public void keyPressed(char key, int keyCode) {
 		if(key == '1') {
+			parent.println();
 			this.swapTo(0);
+		}
+		if (key == '2') {
+			
+			this.swapTo(1);
+		}
+		if(key == '3') {
+			parent.println(exitScreens);
+			this.swapTo(2);
 		}
 	}
 	
@@ -47,7 +56,7 @@ public class StartScreen extends GameScreen {
 	}
 	
 	@Override 
-	public void mouseClicked() {
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 		
 	}
 }

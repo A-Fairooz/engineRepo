@@ -1,11 +1,12 @@
 package Platformer;
 
-import java.util.ArrayList;
+
 import game_engine_2d.Camera2D;
 import game_engine_2d.GameManager;
-import game_engine_2d.GameObject;
+
 import game_engine_2d.GameScreen;
-import game_engine_2d.*;
+
+import game_engine_2d.GUI.menuMaker;
 import game_engine_2d.Tile;
 import game_engine_2d.data_management.DataManager;
 import processing.core.PApplet;
@@ -16,6 +17,7 @@ import processing.data.JSONObject;
 
 public class GameLevel extends GameScreen{
 
+	menuMaker MenuMaker;
 	public GameLevel(PApplet p, GameManager _gameManager) {
 		super(p, _gameManager);
 		this.name = "Game Level 1";
@@ -26,8 +28,12 @@ public class GameLevel extends GameScreen{
 	
 	@Override
 	public void start() {
+		if(!this.ready) {
 		super.start();
+		MenuMaker = new menuMaker(parent,this.exitScreens);
 		
+		MenuMaker.start();
+		this.menuGameObjects.add(MenuMaker);
 		
 		Player player = new Player(parent, parent.width / 2, parent.height / 2, 60, 60);
 		player.start();
@@ -36,33 +42,25 @@ public class GameLevel extends GameScreen{
 		Camera2D camera = new Camera2D(parent, player, 99);
 		camera.cameraOffset.y = 90;
 		this.gameManager.addObject(camera);
-		random_tiles();
-		preset_tiles();
+		
+		if(!this.load_tile_json()) {
+			random_tiles();
+			preset_tiles();
+		}
+	
 		this.ready = true;
+		
+		}
 		this.activate();
 	}
 	
-	private void tile_json() {
-		dataManager = new DataManager(parent);
-		dataManager.load_data();
-		JSONArray tiles = dataManager.game_data.getJSONArray("tiles");
-		for(int i = 0; i < tiles.size(); i++) {
-			JSONObject tile = tiles.getJSONObject(i);
-			int x = tile.getInt("x");
-			int y = tile.getInt("y");
-			int tw = tile.getInt("w");
-			int th = tile.getInt("h");
-			
-			Tile platform = new Tile(parent, x, y, tw, th, 255);
-			platform.start();
-			this.gameObjects.add(platform);
-			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
-		}
-	}
 	
 	@Override
 	public void keyPressed(char key, int keyCode) {
-	
+		if(key == '1') {
+			this.swapTo(0);
+		}
+		
  	}
  	@Override
 	public void keyReleased(char key, int keyCode) {
@@ -73,7 +71,7 @@ public class GameLevel extends GameScreen{
 	
  	}
  	@Override
-	public void mouseClicked() {
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 	
  	}
 	

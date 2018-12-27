@@ -12,7 +12,7 @@ public class Launcher extends BaseLauncher {
 	
 	DataManager dataManager;
 	GameScreen activeScreen;
-	ArrayList<GameScreen> screens = new ArrayList<GameScreen>();
+	
 	
 	public Launcher(PApplet p) {
 		super(p);
@@ -29,18 +29,22 @@ public class Launcher extends BaseLauncher {
 		activeScreen.keyReleased(key, keyCode);
 
 	}
-
-
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+		super.mouseClicked(mouseX,mouseY,mouseButton);
+		activeScreen.mouseClicked(mouseX,mouseY,mouseButton);
+	}
 
 	public void StartGame() {
 		StartScreen startScreen = new StartScreen(parent, this.gameManager);
-		screens.add(startScreen);
 		GameLevel gameLevel = new GameLevel(parent, this.gameManager);
-		screens.add(gameLevel);
-		gameLevel.start();
+		LevelEditor levelEditor = new LevelEditor(parent, this.gameManager);
 		activeScreen = startScreen;
-		started = true;
-		startScreen.exitScreensAdd(gameLevel);
+		started = true;	
+		startScreen.exitScreensAdd(gameLevel);		
+		startScreen.exitScreensAdd(levelEditor);
+		levelEditor.exitScreensAdd(startScreen);
+		gameLevel.exitScreensAdd(startScreen);
+	
 		this.gameManager.StartAll();
 	
 	}

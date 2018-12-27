@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import game_engine_2d.BoundingBox;
 import game_engine_2d.BasicSpatialGrid;
-
+import game_engine_2d.data_management.*;
 public class GameManager extends ProcessingEntity{
 	
 	
 	
 	public int background = 0;
+	private ArrayList<GameObject> GUIGameObjects;
 	private ArrayList<GameObject> gameObjects;
 	private ArrayList<GameObject> playerGameObjects;
 	//private ArrayList<GameObject> enemyGameObjects;
@@ -18,6 +19,7 @@ public class GameManager extends ProcessingEntity{
 	public static PVector offset = new PVector(0,0);
 	public static PVector screenOffset = new PVector(0,0);
 	public static BasicSpatialGrid basicSpatialGrid;
+	public DataManager dataManager;
 	
 	
 	public GameManager(PApplet p) {
@@ -30,8 +32,10 @@ public class GameManager extends ProcessingEntity{
 	}
 	
 	public void Init() {
+		dataManager = new DataManager(parent);
 		gameObjects = new ArrayList<GameObject>();
 		playerGameObjects = new ArrayList<GameObject>();
+		GUIGameObjects = new ArrayList<GameObject>();
 		gameBoundingBoxes = new ArrayList<BoundingBox>();
 		//enemyGameObjects = new ArrayList<GameObject>();
 	}
@@ -56,7 +60,9 @@ public class GameManager extends ProcessingEntity{
 	public void replaceObjects(ArrayList<GameObject> _gameObjects) {
 		gameObjects = _gameObjects;
 	}
-	
+	public void replaceGUIObjects(ArrayList<GameObject> _gameObjects) {
+		GUIGameObjects = _gameObjects;
+	}
 	public void replacePlayerObjects(ArrayList<GameObject> _gameObjects) {
 		playerGameObjects = _gameObjects;
 	}
@@ -72,7 +78,7 @@ public class GameManager extends ProcessingEntity{
 			g.start();
 		}
 		basicSpatialGrid = new BasicSpatialGrid(parent.height, 1);
-		parent.println("spacial grid size min:" + basicSpatialGrid.globalMin.ToString() + ", max:" + basicSpatialGrid.globalMax.ToString());
+		//parent.println("spacial grid size min:" + basicSpatialGrid.globalMin.ToString() + ", max:" + basicSpatialGrid.globalMax.ToString());
 	}
 	public void UpdateAll() {
 		parent.pushMatrix();
@@ -85,6 +91,11 @@ public class GameManager extends ProcessingEntity{
 		}
 		frameCount++;
 		parent.popMatrix();
+		for (int i = 0; i < GUIGameObjects.size(); i++) {
+			GameObject g = GUIGameObjects.get(i);
+			g.update();
+			g.render();
+		}
 	}
 	
 	public void keyPressed(char key, int keyCode) {
@@ -107,10 +118,10 @@ public class GameManager extends ProcessingEntity{
 			g.mousePressed();
 		}
 	}
-	public void mouseClicked() {
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 		for(int i = 0; i < playerGameObjects.size(); i++) {
 			GameObject g = playerGameObjects.get(i);
-			g.mouseClicked();
+			g.mouseClicked(mouseX, mouseY, mouseButton);
 		}
 	}
 	

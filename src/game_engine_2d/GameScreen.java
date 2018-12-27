@@ -2,7 +2,10 @@ package game_engine_2d;
 
 import java.util.ArrayList;
 import game_engine_2d.BoundingBox;
+import game_engine_2d.data_management.DataManager;
 import processing.core.PApplet;
+import processing.data.JSONArray;
+import processing.data.JSONObject;
 
 public abstract class GameScreen extends ProcessingEntity{
 	
@@ -11,6 +14,7 @@ public abstract class GameScreen extends ProcessingEntity{
 	protected ArrayList<GameObject> gameObjects;
 	protected ArrayList<GameObject> playerGameObjects;
 	protected ArrayList<GameScreen> exitScreens;
+	protected ArrayList<GameObject> menuGameObjects;
 	public GameScreen swap_screen = null;
 	protected ArrayList<BoundingBox> gameBoundingBoxes;
 	protected GameManager gameManager;
@@ -29,44 +33,90 @@ public abstract class GameScreen extends ProcessingEntity{
 		this.gameManager = _gameManager;
 		this.exitScreens = new ArrayList<GameScreen>();
 		this.playerGameObjects = new ArrayList<GameObject>();
+		this.menuGameObjects = new ArrayList<GameObject>();
 		this.gameObjects = new ArrayList<GameObject>();
-		this.gameBoundingBoxes = new ArrayList<BoundingBox>();		
+		this.gameBoundingBoxes = new ArrayList<BoundingBox>();	
 	}
 	
 	public void start() {
-		if(this.ready) {
-			this.activate();
-			return;
+		if(!this.ready) {
+			this.ready = true;
+			
 		}
+		this.activate();
 	}
 	
 	public abstract void keyPressed(char key, int keyCode);
 	public abstract void keyReleased(char key, int keyCode);
 	public abstract void mousePressed();
-	public abstract void mouseClicked();
+	public abstract void mouseClicked(int mouseX, int mouseY, int mouseButton);
 	
 	public void exitScreensAdd(GameScreen _screen) {
 		this.exitScreens.add(_screen);
 	}
 	
 	public void swapTo(int i) {
-		if(this.exitScreen != i && this.exitScreen < this.exitScreens.size()) {
+		parent.println("From " + this.name + " swapTo " + i + " => ");
+		if(this.exitScreen < this.exitScreens.size()) {
 			this.exitScreen = i;
 			this.swap_screen = this.exitScreens.get(this.exitScreen);
-			parent.println("swapTo " + i + " => " + this.name);
+
+		}else {
+			parent.println("Error: exitScreen out of range");
+
 		}
+	
 	}
 	
 	
 	public void activate() {
 		this.gameManager.replaceObjects(this.gameObjects);
+		this.gameManager.replaceGUIObjects(this.menuGameObjects);
 		this.gameManager.replacePlayerObjects(this.playerGameObjects);
 		this.gameManager.replaceBoundingBoxes(this.gameBoundingBoxes);
 		this.activated = true;
 		this.gameManager.StartAll();
-		parent.println("Activated " + this.name);
+		parent.println("activated " + this.name);
 	}
 	
+	protected boolean load_tile_json() {
+	
+		try {
+			this.gameManager.dataManager = new DataManager(parent);
+			this.gameManager.dataManager.load_data();
+		}
+		catch(Exception E) {
+			return false;
+		}
+		
+			JSONArray tiles;
+			try {
+				tiles = this.gameManager.dataManager.game_data.getJSONArray("level1");
+			}
+			catch(Exception E) {
+				return false;
+			}
+			
+			for(int i = 0; i < tiles.size(); i ++) {
+				JSONObject tile;
+				try {
+					tile = tiles.getJSONObject(i);
+				}
+				catch(Exception E) {
+					continue;
+				}
+			int x = tile.getInt("x");
+			int y = tile.getInt("y");
+			int tw = tile.getInt("w");
+			int th = tile.getInt("h");
+			
+			Tile platform = new Tile(parent, x, y, tw, th, 255);
+			platform.start();
+			this.gameObjects.add(platform);
+			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
+		}
+			return true;
+	}
 	
 	
 	

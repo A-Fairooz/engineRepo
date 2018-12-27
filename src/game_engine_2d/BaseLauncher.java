@@ -27,7 +27,8 @@ public abstract class BaseLauncher {
     public void mousePressed() {
     	gameManager.mousePressed();
     }
-    public void mouseClicked() {
-    	gameManager.mouseClicked();
+    public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+    	gameManager.mouseClicked(mouseX, mouseY, mouseButton);
+    	}
     }
-}
+

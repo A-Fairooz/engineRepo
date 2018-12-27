@@ -40,7 +40,7 @@ public class Player extends Sprite{
 	@Override
 	public void update() {
 		super.update();
-		//parent.println("test");
+		
 	}
 	
 	@Override

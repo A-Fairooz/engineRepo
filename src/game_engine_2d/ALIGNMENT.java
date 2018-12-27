@@ -1,5 +1,5 @@
 package game_engine_2d;
 
-public enum ALIGNEMENT {
+public enum ALIGNMENT {
 	CENTRE, TOP_LEFT, TOP_CENTRE, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_CENTRE, BOTTOM_RIGHT
 }
