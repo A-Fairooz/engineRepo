@@ -57,8 +57,8 @@ public class BasicSpatialGrid {
 
 	private void makeSpatialGrid() {
 		gridSize = height/gridRes;
-		gridLengthX = PApplet.floor(globalMax.x/gridSize) +100;
-		gridLengthY = PApplet.floor(globalMax.y/gridSize) +100;
+		gridLengthX = PApplet.floor(globalMax.x/gridSize )+100 ;
+		gridLengthY = PApplet.floor(globalMax.y/gridSize) +100 ;
 		spatialGridCells = new ArrayList<SpatialGridCell>();
 		for(int x = 0; x <=gridLengthX; x++) {
 			for(int y=0; y<=gridLengthY;y++){
@@ -102,6 +102,7 @@ public class BasicSpatialGrid {
 		}
 		else {
 			outOfBounds++;
+			PApplet.println("outOfBounds " + index + "/" + spatialGridCells.size());
 		}
 	}
 	private Coord gridCoordinates(float x, float y) {
@@ -118,6 +119,11 @@ public class BasicSpatialGrid {
 			PApplet.println("index = "+index + " spatialGridCells.size()="+spatialGridCells.size());
 			index = 0;
 		}
+		/*else if(spatialGridCells.size() > index) {
+			PApplet.println("ERROR");
+			PApplet.println(index);
+		}
+		*/
 		return spatialGridCells.get(index).subBoundingBoxes;
 	}
 	

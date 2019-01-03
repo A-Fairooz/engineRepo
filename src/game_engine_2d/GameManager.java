@@ -77,8 +77,10 @@ public class GameManager extends ProcessingEntity{
 			GameObject g = gameObjects.get(i);
 			g.start();
 		}
-		basicSpatialGrid = new BasicSpatialGrid(parent.height, 1);
-		//parent.println("spacial grid size min:" + basicSpatialGrid.globalMin.ToString() + ", max:" + basicSpatialGrid.globalMax.ToString());
+		basicSpatialGrid = new BasicSpatialGrid(parent.height , 1);
+		parent.println("spacial grid size min:" + basicSpatialGrid.globalMin.ToString() + ", max:" + basicSpatialGrid.globalMax.ToString());
+		parent.println(parent.height + ", " + parent.width);
+		parent.println();
 	}
 	public void UpdateAll() {
 		parent.pushMatrix();
