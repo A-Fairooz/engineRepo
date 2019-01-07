@@ -36,33 +36,36 @@ public class StartScreen extends GameScreen {
 			
 			gameManager.newGame = false;
 			
-			parent.println(gameManager.newGame);
 			this.swapTo(0);
 		}
 		if (key == '2') {
 			
-			parent.println(gameManager.newGame);
+			
 			this.swapTo(1);
 		}
 		if(key == '3') {
-			parent.println(gameManager.newGame);
-			parent.println(exitScreens);
+			
 			parent.exit();
 		}
 		if(key == '4') {	 
 			gameManager.newGame = true;
-			
-			parent.println(gameManager.newGame);
-			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				
-				e.printStackTrace();
-			}
 			this.swapTo(0);
-			
 		}
+	}
+	
+	public void UpdateAll() {
+		parent.pushMatrix();
+		
+		for(int i = 0; i < gameObjects.size(); i++) {
+			GameObject g = gameObjects.get(i);
+			g.update();
+			g.render();			
+			parent.println("test");
+		}
+		
+		parent.popMatrix();
+		
+		
 	}
 	
 	@Override

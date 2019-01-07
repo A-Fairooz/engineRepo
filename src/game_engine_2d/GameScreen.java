@@ -27,6 +27,7 @@ public abstract class GameScreen extends ProcessingEntity{
 	}
 	
 	
+	
 	public GameScreen(PApplet p, GameManager _gameManager) {
 		super(p);
 		this.name = "Game Screen";
@@ -56,7 +57,7 @@ public abstract class GameScreen extends ProcessingEntity{
 	}
 	
 	public void swapTo(int i) {
-		parent.println("From " + this.name + " swapTo " + i + " => ");
+		//parent.println("From " + this.name + " swapTo " + i + " => ");
 		if(this.exitScreen < this.exitScreens.size()) {
 			this.exitScreen = i;
 			this.swap_screen = this.exitScreens.get(this.exitScreen);
@@ -69,6 +70,7 @@ public abstract class GameScreen extends ProcessingEntity{
 	}
 	
 	
+	
 	public void activate() {
 		this.gameManager.replaceObjects(this.gameObjects);
 		this.gameManager.replaceGUIObjects(this.menuGameObjects);
@@ -76,7 +78,7 @@ public abstract class GameScreen extends ProcessingEntity{
 		this.gameManager.replaceBoundingBoxes(this.gameBoundingBoxes);
 		this.activated = true;
 		this.gameManager.StartAll();
-		parent.println("activated " + this.name);
+		//parent.println("activated " + this.name);
 	}
 	
 	protected boolean load_tile_json() {

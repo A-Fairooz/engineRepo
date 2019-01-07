@@ -12,6 +12,7 @@ public class Launcher extends BaseLauncher {
 	
 	DataManager dataManager;
 	GameScreen activeScreen;
+	GameLevel gl;
 	
 	
 	public Launcher(PApplet p) {
@@ -52,6 +53,7 @@ public class Launcher extends BaseLauncher {
 	
 		public void UpdateAll() {
 			super.UpdateAll();
+			
 			
 			if(activeScreen.swap_screen != null) {
 				activeScreen = activeScreen.swap_screen;

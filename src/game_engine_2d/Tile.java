@@ -1,7 +1,8 @@
 
 package game_engine_2d;
 
-import processing.core.PApplet; 
+import processing.core.PApplet;
+import processing.core.PImage;
 
 
 public class Tile extends Sprite {
@@ -10,6 +11,7 @@ public class Tile extends Sprite {
 	public int strokeColour;
 	public int fillColour;
 	public int[] tileColour = new int[3];
+	
 	
 
 	 

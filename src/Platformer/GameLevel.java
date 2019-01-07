@@ -1,23 +1,27 @@
 package Platformer;
 
 
+import game_engine_2d.BaseLauncher;
 import game_engine_2d.Camera2D;
 import game_engine_2d.GameManager;
 
 import game_engine_2d.GameScreen;
-
+import processing.core.PImage;
 import game_engine_2d.GUI.menuMaker;
 import game_engine_2d.Tile;
 import game_engine_2d.data_management.DataManager;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
-
+import sun.applet.Main;
 
 
 public class GameLevel extends GameScreen{
 
 	menuMaker MenuMaker;
+	Main mainc;
+	PImage testImage;
+	BaseLauncher basel;
 	
 	
 	public GameLevel(PApplet p, GameManager _gameManager) {
@@ -28,15 +32,35 @@ public class GameLevel extends GameScreen{
 	private DataManager dataManager;
 	
 	
-	@Override
+	
+	
+	//@Override
 	public void start() {
 		if(!this.ready) {
+		
 		super.start();
+		
 		MenuMaker = new menuMaker(parent,this.exitScreens);
 		
 		MenuMaker.start();
 		this.menuGameObjects.add(MenuMaker);
 		
+		loadPlayer();
+		parent.println(this.exitScreen);
+		if(gameManager.newGame == false) {
+
+			this.load_tile_json();
+		}
+		
+		this.ready = true;
+		}
+		this.activate();
+		
+	}
+	
+	
+	public void loadPlayer() {
+
 		Player player = new Player(parent, parent.width / 2, parent.height / 2, 60, 60);
 		player.start();
 		this.gameManager.addObject(player);
@@ -44,22 +68,10 @@ public class GameLevel extends GameScreen{
 		Camera2D camera = new Camera2D(parent, player, 99);
 		camera.cameraOffset.y = 90;
 		this.gameManager.addObject(camera);
-		
-		
-		if(gameManager.newGame == true) {
-			random_tiles();
-			preset_tiles();
-		}
-		else if(gameManager.newGame == false){
-			this.load_tile_json();
-		}
-		
-	
-		this.ready = true;
-		
-		}
-		this.activate();
 	}
+	
+	
+	
 	
 	
 	@Override
@@ -70,6 +82,13 @@ public class GameLevel extends GameScreen{
 			gameManager.screenOffset.x = 0;
 			gameManager.screenOffset.y = 0;
 		}
+		
+		if(key == 'r' || key == 'R') {
+			
+			
+			reload();
+		}
+		
 		
  	}
  	@Override
@@ -84,7 +103,14 @@ public class GameLevel extends GameScreen{
 	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 	
  	}
-	
+ 	
+ 	public void reload() {
+ 		
+ 		
+ 		preset_tiles();
+ 		loadPlayer();
+ 		
+ 	}
 	
  	public void preset_tiles() {
  		
@@ -117,7 +143,7 @@ public class GameLevel extends GameScreen{
  				}
  				
  				
- 				
+ 				//PImage image = new PImage()
  				
  				
  				// right

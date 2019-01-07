@@ -2,8 +2,9 @@ package game_engine_2d;
 import processing.core.*;
 import java.util.ArrayList;
 
+import Platformer.GameLevel;
 import game_engine_2d.BoundingBox;
-//import game_engine_2d.BasicSpatialGrid;
+
 import game_engine_2d.data_management.*;
 public class GameManager extends ProcessingEntity{
 	
@@ -18,10 +19,10 @@ public class GameManager extends ProcessingEntity{
 	public static int frameCount = 0;
 	public static PVector offset = new PVector(0,0);
 	public static PVector screenOffset = new PVector(0,0);
-	public static boolean newGame;
+	public boolean newGame;
 	//public static BasicSpatialGrid basicSpatialGrid;
 	public DataManager dataManager;
-	
+	public GameLevel gl;
 	
 	public GameManager(PApplet p) {
 	super(p);
@@ -72,7 +73,7 @@ public class GameManager extends ProcessingEntity{
 		gameBoundingBoxes = _boundingBoxes;
 	}
 	
-	
+		
 	public void StartAll() {
 		for(int i = 0; i < gameObjects.size(); i++) {
 			GameObject g = gameObjects.get(i);
@@ -80,6 +81,7 @@ public class GameManager extends ProcessingEntity{
 		}
 		
 	}
+	
 	public void UpdateAll() {
 		parent.pushMatrix();
 		parent.translate(offset.x, offset.y);
@@ -88,6 +90,12 @@ public class GameManager extends ProcessingEntity{
 			GameObject g = gameObjects.get(i);
 			g.update();
 			g.render();			
+		}
+		if(newGame == true ) {
+			newGame = false;
+			parent.println("New Game Active");
+			Init(); 	
+	 		gl.reload();
 		}
 		frameCount++;
 		parent.popMatrix();
