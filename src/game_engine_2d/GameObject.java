@@ -10,7 +10,7 @@ public abstract class GameObject extends ProcessingEntity {
 		super(p);
 		this.components = new ArrayList<GameComponent>();
 	}
-
+ 
 	public String name;
 	public String tag;
 	

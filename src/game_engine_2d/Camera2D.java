@@ -17,7 +17,7 @@ public class Camera2D extends GameObject{
 		super(p);
 		this.followMe = f;
 		offsetLimit = limit;
-	}
+	} 
 
 	@Override
 	public void start() {

@@ -18,7 +18,7 @@ public class Player extends Sprite{
 	
 	public Player(PApplet p) {
 		super(p);
-	}
+	} 
 
 	public Player(PApplet p, float x, float y, float w, float h) {
 		super(p);

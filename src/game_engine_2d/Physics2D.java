@@ -76,14 +76,14 @@ public class Physics2D extends GameComponent{
 		
 		BoundingBox new_bb;
 		new_bb = this.transform.NewWorldBoundingBox();
-		ArrayList<BoundingBox> mySpatialLoc = GameManager.basicSpatialGrid.queryGrid(new_bb);
-		collisionCount = mySpatialLoc.size();
-		for(int i = 0; i<collisionCount; i++) {
+		//ArrayList<BoundingBox> mySpatialLoc = GameManager.basicSpatialGrid.queryGrid(new_bb);
+		//collisionCount = mySpatialLoc.size();
+		for(int i = 0; i<GameManager.gameBoundingBoxes.size(); i++) {
 			
 			
 			
 			HitInfo hitInfo = new HitInfo();
-			hitInfo.boundingBox = mySpatialLoc.get(i);
+			hitInfo.boundingBox = GameManager.gameBoundingBoxes.get(i);
 			hitInfo = this.boxCollider2D.checkCollision(hitInfo);
 			
 			if(hitInfo.didHit) {

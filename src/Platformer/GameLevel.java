@@ -18,6 +18,8 @@ import processing.data.JSONObject;
 public class GameLevel extends GameScreen{
 
 	menuMaker MenuMaker;
+	
+	
 	public GameLevel(PApplet p, GameManager _gameManager) {
 		super(p, _gameManager);
 		this.name = "Game Level 1";
@@ -43,10 +45,15 @@ public class GameLevel extends GameScreen{
 		camera.cameraOffset.y = 90;
 		this.gameManager.addObject(camera);
 		
-		if(!this.load_tile_json()) {
+		
+		if(gameManager.newGame == true) {
 			random_tiles();
 			preset_tiles();
 		}
+		else if(gameManager.newGame == false){
+			this.load_tile_json();
+		}
+		
 	
 		this.ready = true;
 		
@@ -59,6 +66,9 @@ public class GameLevel extends GameScreen{
 	public void keyPressed(char key, int keyCode) {
 		if(key == '1') {
 			this.swapTo(0);
+			
+			gameManager.screenOffset.x = 0;
+			gameManager.screenOffset.y = 0;
 		}
 		
  	}
@@ -88,7 +98,7 @@ public class GameLevel extends GameScreen{
 		Tile platform;
  		//bottom
  				for (int i = 0; i < 30; i++) {
- 					platform = new Tile(parent, i * tw , parent.height , tw, th,255);
+ 					platform = new Tile(parent, i * tw , parent.height , tw, th,255,255,255);
  					platform.start();
  					platform.strokeColour = parent.color(0, 200, 200);
  					platform.fillColour = parent.color(0, 200, 200);
@@ -98,7 +108,7 @@ public class GameLevel extends GameScreen{
 
  				// left
  				for (int i = 0; i < wbHeightWidth; i++) {
- 					platform = new Tile(parent, 0, parent.height  - (th) * i, tw, th, 255);
+ 					platform = new Tile(parent, 0, parent.height  - (th) * i, tw, th,255,255,255);
  					platform.start();
  					platform.strokeColour = parent.color(0, 200, 200);
  					platform.fillColour = parent.color(0, 200, 200);
@@ -112,7 +122,7 @@ public class GameLevel extends GameScreen{
  				
  				// right
  				for (int i = 0; i < wbHeightWidth; i++) {
- 					platform = new Tile(parent, parent.width, parent.height - (th) * i, tw, th, 255);
+ 					platform = new Tile(parent, parent.width, parent.height - (th) * i, tw, th,255,255,255);
  					platform.start();
  					platform.strokeColour = parent.color(0, 200, 200);
  					platform.fillColour = parent.color(0, 200, 200);
@@ -133,7 +143,7 @@ public class GameLevel extends GameScreen{
 		for (int i = 0; i < platforms; i++) {
 			int x = (int) parent.random(0, numPlatformsX) * tw;
 			int y = (int) parent.random(-numPlatformsY, numPlatformsY) * th;
-			platform = new Tile(parent, x, y, tw, th, 255);
+			platform = new Tile(parent, x, y, tw, th,255,255,255);
 			platform.start();
 			this.gameObjects.add(platform);
 			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());

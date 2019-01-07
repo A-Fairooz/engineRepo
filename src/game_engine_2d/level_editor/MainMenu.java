@@ -2,6 +2,8 @@ package game_engine_2d.level_editor;
 
 
 import java.util.ArrayList;
+
+import game_engine_2d.GameManager;
 import game_engine_2d.GameObject;
 import game_engine_2d.Tile;
 import game_engine_2d.data_management.*;
@@ -14,6 +16,7 @@ public abstract class MainMenu  extends GameObject{
 	
 	private JSONArray menuItems;
 	private DataManager dataManager;
+	GameManager gameManager;
 	private String menu_file = "level_edit_menu.json";
 	public MainMenu(PApplet p) {
 		super(p);
@@ -23,9 +26,12 @@ public abstract class MainMenu  extends GameObject{
 	@Override
 	public void start() {
 		dataManager = new DataManager(parent, menu_file);
-		dataManager.load_data();
-		this.menuItems = dataManager.game_data.getJSONArray("menuItems");
-	}
+		
+			dataManager.load_data();
+			this.menuItems = dataManager.game_data.getJSONArray("menuItems");
+		
+		
+	} 
 	
 	
 	public void start(String _filename) {

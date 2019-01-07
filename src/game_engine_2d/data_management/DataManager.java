@@ -43,13 +43,16 @@ public class DataManager extends ProcessingEntity {
 			   {
 				parent.println("object not tile " + g_obj.name);
 				continue;
-			   }
+			   } 
 			JSONObject json = new JSONObject();
 			json.setInt("id", i);
 			json.setFloat("x", tile.transform.position.x);
 			json.setFloat("y", tile.transform.position.y);
 			json.setFloat("w", tile.size.x);
 			json.setFloat("h", tile.size.y);
+			json.setInt("tColour_0", tile.tileColour[0]);
+			json.setInt("tColour_1", tile.tileColour[1]);
+			json.setInt("tColour_2", tile.tileColour[2]);
 			json_list.setJSONObject(i, json);
 			parent.println("save "+i+ " position:"+tile.transform.position.toString());
 		}

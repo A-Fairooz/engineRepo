@@ -1,6 +1,7 @@
 package Platformer;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import game_engine_2d.GameManager;
 import game_engine_2d.GameObject;
@@ -12,7 +13,7 @@ import processing.core.PApplet;
 public class StartScreen extends GameScreen {
 	
 	menuMaker MenuMaker;
-
+	GameLevel gameLevel;
 	public StartScreen(PApplet p, GameManager _gameManager) {
 		super(p, _gameManager);
 		this.name = "Start Screen";
@@ -28,20 +29,39 @@ public class StartScreen extends GameScreen {
 		this.ready = true;
 		this.activate();
 	}
-	
+	 
 	@Override
 	public void keyPressed(char key, int keyCode) {
 		if(key == '1') {
-			parent.println();
+			
+			gameManager.newGame = false;
+			
+			parent.println(gameManager.newGame);
 			this.swapTo(0);
 		}
 		if (key == '2') {
 			
+			parent.println(gameManager.newGame);
 			this.swapTo(1);
 		}
 		if(key == '3') {
+			parent.println(gameManager.newGame);
 			parent.println(exitScreens);
-			this.swapTo(2);
+			parent.exit();
+		}
+		if(key == '4') {	 
+			gameManager.newGame = true;
+			
+			parent.println(gameManager.newGame);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
+			}
+			this.swapTo(0);
+			
 		}
 	}
 	

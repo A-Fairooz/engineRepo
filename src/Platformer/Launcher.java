@@ -21,7 +21,7 @@ public class Launcher extends BaseLauncher {
 
 	public void keyPressed(char key, int keyCode) {
 		super.keyPressed(key, keyCode);
-		activeScreen.keyPressed(key, keyCode);
+		activeScreen.keyPressed(key, keyCode); 
 	}
 
 	public void keyReleased(char key, int keyCode) {

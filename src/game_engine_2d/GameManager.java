@@ -3,7 +3,7 @@ import processing.core.*;
 import java.util.ArrayList;
 
 import game_engine_2d.BoundingBox;
-import game_engine_2d.BasicSpatialGrid;
+//import game_engine_2d.BasicSpatialGrid;
 import game_engine_2d.data_management.*;
 public class GameManager extends ProcessingEntity{
 	
@@ -18,7 +18,8 @@ public class GameManager extends ProcessingEntity{
 	public static int frameCount = 0;
 	public static PVector offset = new PVector(0,0);
 	public static PVector screenOffset = new PVector(0,0);
-	public static BasicSpatialGrid basicSpatialGrid;
+	public static boolean newGame;
+	//public static BasicSpatialGrid basicSpatialGrid;
 	public DataManager dataManager;
 	
 	
@@ -77,10 +78,7 @@ public class GameManager extends ProcessingEntity{
 			GameObject g = gameObjects.get(i);
 			g.start();
 		}
-		basicSpatialGrid = new BasicSpatialGrid(parent.height , 1);
-		parent.println("spacial grid size min:" + basicSpatialGrid.globalMin.ToString() + ", max:" + basicSpatialGrid.globalMax.ToString());
-		parent.println(parent.height + ", " + parent.width);
-		parent.println();
+		
 	}
 	public void UpdateAll() {
 		parent.pushMatrix();
@@ -99,7 +97,7 @@ public class GameManager extends ProcessingEntity{
 			g.render();
 		}
 	}
-	
+	 
 	public void keyPressed(char key, int keyCode) {
 		for(int i = 0; i <playerGameObjects.size(); i++) {
 			GameObject g = playerGameObjects.get(i);

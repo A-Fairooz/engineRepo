@@ -109,8 +109,11 @@ public abstract class GameScreen extends ProcessingEntity{
 			int y = tile.getInt("y");
 			int tw = tile.getInt("w");
 			int th = tile.getInt("h");
+			int tc_0 = tile.getInt("tColour_0");
+			int tc_1= tile.getInt("tColour_1");
+			int tc_2 = tile.getInt("tColour_2");
 			
-			Tile platform = new Tile(parent, x, y, tw, th, 255);
+			Tile platform = new Tile(parent, x, y, tw, th, tc_0,tc_1,tc_2);
 			platform.start();
 			this.gameObjects.add(platform);
 			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
