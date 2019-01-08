@@ -2,6 +2,7 @@ package Platformer;
 
 import game_engine_2d.Camera2D;
 import game_engine_2d.GameManager;
+import game_engine_2d.GameObject;
 import game_engine_2d.GameScreen;
 import game_engine_2d.Tile;
 import game_engine_2d.GUI.menuMaker;
@@ -9,7 +10,8 @@ import game_engine_2d.data_management.DataManager;
 import processing.core.PApplet;
 import processing.core.PVector;
 import processing.data.JSONArray;
-import java.util.LinkedList; 
+import java.util.LinkedList;
+import java.util.Random;
 import java.io.*; 
 
 public class LevelEditor extends GameScreen {
@@ -17,7 +19,12 @@ public class LevelEditor extends GameScreen {
 	int platform_width = 20;
 	int platform_height = 20;
 	int levelID = 1;
-	public int[] platformColour = new int[3];
+	GameObject emptyGo;
+	
+	
+	
+	
+	public int[] pipeColour = new int[3];
 	boolean inEditor;
 	public LevelEditor(PApplet p, GameManager _gameManager) {
 		super(p, _gameManager);
@@ -31,12 +38,21 @@ public class LevelEditor extends GameScreen {
 		menuMaker.add_menu_item("A - add platform");
 		menuMaker.add_menu_item("S - save level");
 		menuMaker.add_menu_item("L - load level");
+		menuMaker.add_menu_item("Quit");
 		menuMaker.start();
 		this.menuGameObjects.add(menuMaker);
 		this.ready = true;
 		this.activate();
 		inEditor = true;
-		platformColour[0] = 255; platformColour[1] = 255; platformColour[2] = 255; 
+		pipeColour[0] = 255; pipeColour[1] = 255; pipeColour[2] = 255; 
+		EmptyGameObject emptyGo = new EmptyGameObject(parent, parent.width/2, parent.height/2, platform_width, platform_height);
+		
+		emptyGo.start();
+		this.gameManager.addObject(emptyGo);
+		this.gameManager.addPlayerGameObjects(emptyGo);
+		Camera2D camera = new Camera2D(parent, emptyGo, 99);
+		camera.cameraOffset.y = 90;
+		this.gameManager.addObject(camera);
 	}
 
 	@Override
@@ -46,19 +62,25 @@ public class LevelEditor extends GameScreen {
 			this.swapTo(0);
 			inEditor = false;
 		}  
-		
+
+		else if(key == PApplet.RIGHT && inEditor) {
+			emptyGo.transform.position.x += platform_width;
+		}
 		else if(key == '2' && inEditor) {
-			platformColour[0] = 0; platformColour[1] = 0; platformColour[2] = 255; 
-			parent.println("Blue");
+			setColour(255,0,0);
+			
 		}
 		else if(key == '3' && inEditor) {
-			platformColour[0] = 255; platformColour[1] = 0; platformColour[2] = 0; 
-			parent.println("Red");
+			 
+			setColour(0,255,0);
+		}
+		else if(key == '4' && inEditor) {
+			 
+			setColour(0,0,255);
 		}
 		
 		else if (Character.toUpperCase(key) == 'S') {
-			// save tiles as json array
-			// the levelID is 1, todo - make list of levels to save/load
+			
 			this.gameManager.dataManager.save_tiles_json(this.gameObjects, "level" + levelID);
 
 		} else if (Character.toUpperCase(key) == 'L') {
@@ -67,7 +89,9 @@ public class LevelEditor extends GameScreen {
 
 	}
 
-	
+	public void setColour(int c1, int c2, int c3) {
+		pipeColour[0] = c1; pipeColour[1] = c2; pipeColour[2] = c3;
+	}
 
 	@Override
 	public void keyReleased(char key, int keyCode) {
@@ -86,13 +110,16 @@ public class LevelEditor extends GameScreen {
 		parent.println(mouseButton);
 		if(mouseButton == 37) {
 			parent.println("level edit click");
-			add_platform(mouseX, mouseY);
+			
 		}
 		else if (mouseButton == 39) {
 			undoLastPlatform();
 		}
 		
 	}
+
+	
+		
 
 	void undoLastPlatform() {
 		int lastIndexPos = this.gameObjects.size();
@@ -102,12 +129,13 @@ public class LevelEditor extends GameScreen {
 	}
 	void add_platform(int x, int y) {
 		
+		
 		int gridX = ((x / platform_width) * platform_width) + platform_width/2;
 		int gridY = ((y / platform_height) * platform_height) + platform_height/2;
 		parent.println("Grid X = " + gridX + ", Grid Y = " + gridY);
-		Tile platform = new Tile(parent, gridX, gridY, platform_width, platform_height, platformColour[0],platformColour[1],platformColour[2]);
+		Tile platform = new Tile(parent, gridX, gridY, platform_width, platform_height, pipeColour[0],pipeColour[1],pipeColour[2]);
 		platform.start();
-		platform.fillColour = parent.color(platformColour[0], platformColour[1], platformColour[2] );
+		platform.fillColour = parent.color(pipeColour[0], pipeColour[1], pipeColour[2] );
 		this.gameObjects.add(platform);
 		this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
 	}

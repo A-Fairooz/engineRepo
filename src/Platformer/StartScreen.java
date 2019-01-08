@@ -24,6 +24,7 @@ public class StartScreen extends GameScreen {
 		super.start();
 		
 		MenuMaker = new menuMaker(parent, this.exitScreens);
+		MenuMaker.add_menu_item("Quit");
 		MenuMaker.start();
 		this.gameObjects.add(MenuMaker);
 		this.ready = true;
@@ -32,7 +33,7 @@ public class StartScreen extends GameScreen {
 	 
 	@Override
 	public void keyPressed(char key, int keyCode) {
-		if(key == '1') {
+		if(key == '4') {
 			
 			gameManager.newGame = false;
 			
@@ -49,17 +50,12 @@ public class StartScreen extends GameScreen {
 			parent.println(exitScreens);
 			parent.exit();
 		}
-		if(key == '4') {	 
+		if(key == '1') {	 
 			gameManager.newGame = true;
 			
 			parent.println(gameManager.newGame);
 			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				
-				e.printStackTrace();
-			}
+			
 			this.swapTo(0);
 			
 		}

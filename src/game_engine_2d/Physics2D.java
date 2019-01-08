@@ -19,7 +19,7 @@ public class Physics2D extends GameComponent{
 	float frictionOverride = 1;
 	float frictionNormal = 0.9f;
 	boolean isGrounded =false;
-	public float speed = 5f;
+	public float speed = 0.5f;
 	public float maxSpeed = 5f;
 	public int collisionCount = 0;
 	
@@ -142,9 +142,16 @@ public class Physics2D extends GameComponent{
 			isGrounded = false;
 		}
 	}
+	
+	public void flappyBirdJump(float force) {
+		this.velocity.y = -force;
+		
+	}
+	
 
 	private void gravityEffect() {
 		this.velocity.y +=gravity;
+		this.velocity.x = speed;
 		if(velocity.y >= maxSpeed) {
 			this.velocity.y = maxSpeed;
 		}

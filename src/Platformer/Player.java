@@ -12,35 +12,42 @@ public class Player extends Sprite{
 	public int stroke = parent.color(120,120,255);
 	public int fill = parent.color(255);	
 	private Physics2D physics;
-	float speedForce = 10f;
+	float speedForce = 1f;
 	float jumpForce = 7f;
 	public PVector spawnPoint = new PVector(0,0);
 	
+	public boolean isReset;
 	public Player(PApplet p) {
 		super(p);
 	} 
 
 	public Player(PApplet p, float x, float y, float w, float h) {
 		super(p);
+		this.transform.position.x = x;		
+		this.transform.position.y = y;
+		this.spawnPoint.x = x;
+		this.spawnPoint.y = y;
+		this.tag = "Player";
+		
+				
 		
 	}
 	public void start() {
-		this.transform.position.x = parent.width / 2;
-		spawnPoint.x = parent.width / 2;
-		this.transform.position.y = parent.height / 2;
-		spawnPoint.y = parent.height / 2;
-		//spawnPoint = this.transform.position;
-				
 		this.transform.localBoundingBox.fromSize(size);
 		this.physics = new Physics2D(this);
 		this.physics.start();
+		
 		this.physics.speed = speedForce;
 	}
 	
 	@Override
 	public void update() {
 		super.update();
-		
+		//parent.println(this.transform.position.y);
+		if(this.transform.position.y > parent.height + parent.height/2) {
+			this.transform.position.x = this.spawnPoint.x;
+			this.transform.position.y = this.spawnPoint.y;
+		}
 	}
 	
 	@Override
@@ -55,25 +62,13 @@ public class Player extends Sprite{
 	}
 	public void keyPressed(char key, int keyCode) {
 		// mapped key pressed
-		super.keyPressed(key, keyCode);
-		
+		super.keyPressed(key, keyCode);	
 		
 		
 		   if (keyCode == PApplet.UP) 
 		   {
 			  
-			this.physics.jump(jumpForce);					
-		   }
-		   
-		   if (keyCode == PApplet.LEFT) 
-		   {
-			this.physics.move(-speedForce);
-			System.out.println("test");
-		   }
-		   
-		   if (keyCode == PApplet.RIGHT) 
-		   {
-			this.physics.move(speedForce);
+			this.physics.flappyBirdJump(jumpForce);					
 		   }
 		   
 		   if(keyCode == PApplet.BACKSPACE) 

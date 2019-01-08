@@ -18,8 +18,7 @@ public class GameManager extends ProcessingEntity{
 	public static int frameCount = 0;
 	public static PVector offset = new PVector(0,0);
 	public static PVector screenOffset = new PVector(0,0);
-	public static boolean newGame;
-	//public static BasicSpatialGrid basicSpatialGrid;
+	public static boolean newGame;	
 	public DataManager dataManager;
 	
 	
@@ -46,10 +45,7 @@ public class GameManager extends ProcessingEntity{
 	}
 	public void addPlayerGameObjects(GameObject b) {
 		playerGameObjects.add(b);
-	}
-	//public void addEnemyGameObjects(GameObject b) {
-	//	enemyGameObjects.add(b);
-	//}
+	}	
 	
 	public void addObject(GameObject g) {
 		gameObjects.add(g);

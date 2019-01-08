@@ -52,7 +52,7 @@ public class Camera2D extends GameObject{
 			//add custom camera offset
 			virtualScreenCentre.add(this.cameraOffset);
 			//transform forward to new offset
-			GameManager.offset.lerp(virtualScreenCentre,0.02f);
+			GameManager.offset.lerp(virtualScreenCentre,1);
 		}
 		
 	}
