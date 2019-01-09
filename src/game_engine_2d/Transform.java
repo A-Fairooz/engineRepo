@@ -20,14 +20,14 @@ public class Transform {
 	
 	
 	public BoundingBox PreviousWorldBoundingBox() {
-		BoundingBox bb = new BoundingBox();
-		bb.center_x = prev_position.x;
-		bb.center_y = prev_position.y;
-		bb.left = prev_position.x + localBoundingBox.left;
-		bb.right = prev_position.x + localBoundingBox.right;
-		bb.top = prev_position.y + localBoundingBox.top;
-		bb.bottom = prev_position.y + localBoundingBox.bottom;
-		return bb;
+		BoundingBox b_b = new BoundingBox();
+		b_b.center_x = prev_position.x;
+		b_b.center_y = prev_position.y;
+		b_b.left = prev_position.x + localBoundingBox.left;
+		b_b.right = prev_position.x + localBoundingBox.right;
+		b_b.top = prev_position.y + localBoundingBox.top;
+		b_b.bottom = prev_position.y + localBoundingBox.bottom;
+		return b_b;
 	}
 
 	

@@ -10,9 +10,13 @@ public abstract class GameObject extends ProcessingEntity {
 		super(p);
 		this.components = new ArrayList<GameComponent>();
 	}
- 
-	public String name;
+	
+	//Variables
+	public String layer;
 	public String tag;
+	public String name;
+	
+	
 	
 	public ArrayList<GameComponent> components;
 	public Transform transform = new Transform();
@@ -24,7 +28,5 @@ public abstract class GameObject extends ProcessingEntity {
 	public void keyReleased(char key, int keyCode) {}
 	public void mousePressed() {}
 	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {}
-	public String ToString() {
-		return this.name;
-	}
+	public String ToString() {return this.name;}
 }

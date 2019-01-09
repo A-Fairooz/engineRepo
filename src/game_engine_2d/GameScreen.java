@@ -17,7 +17,7 @@ public abstract class GameScreen extends ProcessingEntity{
 	protected ArrayList<GameObject> menuGameObjects;
 	public GameScreen swap_screen = null;
 	protected ArrayList<BoundingBox> gameBoundingBoxes;
-	protected GameManager gameManager;
+	protected GameManager gm;
 	protected boolean ready = false;
 	public boolean activated = false;
 	
@@ -30,7 +30,7 @@ public abstract class GameScreen extends ProcessingEntity{
 	public GameScreen(PApplet p, GameManager _gameManager) {
 		super(p);
 		this.name = "Game Screen";
-		this.gameManager = _gameManager;
+		this.gm = _gameManager;
 		this.exitScreens = new ArrayList<GameScreen>();
 		this.playerGameObjects = new ArrayList<GameObject>();
 		this.menuGameObjects = new ArrayList<GameObject>();
@@ -70,20 +70,20 @@ public abstract class GameScreen extends ProcessingEntity{
 	
 	
 	public void activate() {
-		this.gameManager.replaceObjects(this.gameObjects);
-		this.gameManager.replaceGUIObjects(this.menuGameObjects);
-		this.gameManager.replacePlayerObjects(this.playerGameObjects);
-		this.gameManager.replaceBoundingBoxes(this.gameBoundingBoxes);
+		this.gm.replaceObjects(this.gameObjects);
+		this.gm.replaceUIObjects(this.menuGameObjects);
+		this.gm.replacePlayerObjects(this.playerGameObjects);
+		this.gm.replaceBoundingBoxes(this.gameBoundingBoxes);
 		this.activated = true;
-		this.gameManager.StartAll();
+		this.gm.StartAll();
 		parent.println("activated " + this.name);
 	}
 	
 	protected boolean load_tile_json() {
 	
 		try {
-			this.gameManager.dataManager = new DataManager(parent);
-			this.gameManager.dataManager.load_data();
+			this.gm.dataManager = new DataManager(parent);
+			this.gm.dataManager.load_data();
 		}
 		catch(Exception E) {
 			return false;
@@ -91,7 +91,7 @@ public abstract class GameScreen extends ProcessingEntity{
 		
 			JSONArray tiles;
 			try {
-				tiles = this.gameManager.dataManager.game_data.getJSONArray("level1");
+				tiles = this.gm.dataManager.game_data.getJSONArray("level1");
 			}
 			catch(Exception E) {
 				return false;

@@ -9,4 +9,5 @@ public class HitInfo {
 	public boolean didHit = false;
 	
 	
+	
 }

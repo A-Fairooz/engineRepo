@@ -6,7 +6,9 @@ import game_engine_2d.SIDES;
 import game_engine_2d.Transform;
 
 public class BoxCollider2D extends ProcessingEntity{
-	
+
+
+	//Variables
 	public Transform transform = new Transform();
 	
 	public BoxCollider2D(GameObject g) {
@@ -24,34 +26,32 @@ public class BoxCollider2D extends ProcessingEntity{
 		
 		if(this.transform.position.y > tile_bb.top && this.transform.position.y < tile_bb.bottom) {
 			if (new_bb.left < tile_bb.right && new_bb.right > tile_bb.right ) {
-				//collision right
 				hitInfo.hitSide = SIDES.RIGHT;
 				hitInfo.didHit = true;
+				
+				
 			} 
 			if (new_bb.left < tile_bb.left && new_bb.right > tile_bb.left ) {
-				//collision left
+			
 				hitInfo.hitSide = SIDES.LEFT;
 				hitInfo.didHit = true;
+				
 			}
 		}
 		else if (new_bb.right > tile_bb.left && new_bb.left < tile_bb.right) {
-			// game sprite is OVER tile_bb
+		
 			if (new_bb.bottom > tile_bb.top && prev_bb.top < tile_bb.top) {
-				 //collision down
+				
 				hitInfo.hitSide = SIDES.BOTTOM;
 				hitInfo.didHit = true;
 			}
 			if (new_bb.top < tile_bb.bottom && prev_bb.bottom > tile_bb.bottom) {
 				hitInfo.hitSide = SIDES.TOP;
 				hitInfo.didHit = true;
+				parent.println("HitTop");
 			}
-		}
-		else {
-			
-		}
+		}		
+		else {}
 		return hitInfo;
 		}
 	}
-
-
- 

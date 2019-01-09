@@ -10,13 +10,14 @@ public class Main extends PApplet{
 	public Launcher launcher;
 	public int sW = 800;
 	public int sH = 800;
-	public int bg = 0;
+	public int bg_1 = 96;
+	public int bg_2 = 218 ;
+	public int bg_3 = 255;
 	
 	public void setup() {
-		background(bg);
+		background(bg_1,bg_2,bg_3);
 		frameRate = 60;
-		launcher = new Launcher(this);
-		
+		launcher = new Launcher(this);	
 		
 	}
 	
@@ -29,16 +30,9 @@ public class Main extends PApplet{
 	public void settings() {
 		size(sW, sH);
 	}
-
-	public void keyPressed() {
-		launcher.keyPressed(key, keyCode);
-	}
 	
-	public void keyReleased() {
-		launcher.keyReleased(key, keyCode);
-	}
-	public void mousePressed()   { 
-		launcher.mousePressed(); 
-		}
 	public void mouseClicked() {launcher.mouseClicked(mouseX, mouseY, mouseButton);}
+	public void keyPressed() {launcher.keyPressed(key, keyCode);}
+	public void keyReleased() {launcher.keyReleased(key, keyCode);}
+	
 }

@@ -5,53 +5,54 @@ import processing.core.PVector;
 
 public class Camera2D extends GameObject{
 	
-	public GameObject followMe;
+	
+	//Variables
 	public float offsetLimit = 50;
 	public PVector cameraOffset = new PVector(0,0);
-	public Camera2D(PApplet p, GameObject f) {
+	public GameObject followMe;		
+	
+	public Camera2D(PApplet p, GameObject f)
+	{
 		super(p);
 		this.followMe = f;
 	}
 	
-	public Camera2D(PApplet p, GameObject f, float limit) {
+	public Camera2D(PApplet p, GameObject f, float limit) 
+	{
 		super(p);
 		this.followMe = f;
 		offsetLimit = limit;
 	} 
 
 	@Override
-	public void start() {
-		
-	}
+	public void start() {}
 	
 	@Override
-	public void update() {
-		
-	}
+	public void update() {}
 	
 	@Override
-	public void render() {
+	public void render() 
+	{
 		late_update_xy();
 	}
 	
 	
 	private void late_update_xy() {
-		//copy screen offset centre
-		PVector virtualScreenCentre = GameManager.screenOffset.copy();
-		//add current global offset
+		//Copy the virtual screen's centre offset
+		PVector virtualScreenCentre = GameManager.screenOffset.copy();		
 		virtualScreenCentre.add(GameManager.offset);
-		//setup player virtual global position
+		//Setup the player's virtual global position
 		PVector virtualPlayer = GameManager.offset.copy();
 		virtualPlayer.add(this.followMe.transform.position);
-		//check distance between player and virtual centre
+		//check the distance between the player and the virtual screen's centre
 		float d = virtualScreenCentre.dist(virtualPlayer);
 		
 		if(d > offsetLimit) {
-			//get difference between virtual centre and player
+			//compare the global difference between the screen virtual centre and the player virtual player's position
 			virtualScreenCentre.sub(virtualPlayer);
 			//add custom camera offset
 			virtualScreenCentre.add(this.cameraOffset);
-			//transform forward to new offset
+			//transform players position forward to the new offset
 			GameManager.offset.lerp(virtualScreenCentre,1);
 		}
 		

@@ -9,11 +9,12 @@ public class GameManager extends ProcessingEntity{
 	
 	
 	
-	public int background = 0;
+	public int background_1 = 0;
+	public int background_2 = 0;
+	public int background_3 = 0;
 	private ArrayList<GameObject> GUIGameObjects;
 	private ArrayList<GameObject> gameObjects;
-	private ArrayList<GameObject> playerGameObjects;
-	//private ArrayList<GameObject> enemyGameObjects;
+	private ArrayList<GameObject> playerGameObjects;	
 	public static ArrayList<BoundingBox> gameBoundingBoxes;
 	public static int frameCount = 0;
 	public static PVector offset = new PVector(0,0);
@@ -28,16 +29,16 @@ public class GameManager extends ProcessingEntity{
 	
 	screenOffset.x = parent.width/2;
 	screenOffset.y = parent.height/2;
-	this.Init();
+	this.Intialise();
 	}
 	
-	public void Init() {
+	public void Intialise() {
 		dataManager = new DataManager(parent);
 		gameObjects = new ArrayList<GameObject>();
 		playerGameObjects = new ArrayList<GameObject>();
 		GUIGameObjects = new ArrayList<GameObject>();
 		gameBoundingBoxes = new ArrayList<BoundingBox>();
-		//enemyGameObjects = new ArrayList<GameObject>();
+		
 	}
 
 	public void addGameBoundingBoxes(GameObject b) {
@@ -50,21 +51,25 @@ public class GameManager extends ProcessingEntity{
 	public void addObject(GameObject g) {
 		gameObjects.add(g);
 	}
-	public void removeObject(GameObject g) {
+	public void removeLastObject(GameObject g) {
 		gameObjects.remove(gameObjects.lastIndexOf(g));
 	}
 	
-	public void replaceObjects(ArrayList<GameObject> _gameObjects) {
+	public void replaceObjects(ArrayList<GameObject> _gameObjects)
+	{
 		gameObjects = _gameObjects;
 	}
-	public void replaceGUIObjects(ArrayList<GameObject> _gameObjects) {
+	public void replaceUIObjects(ArrayList<GameObject> _gameObjects)
+	{
 		GUIGameObjects = _gameObjects;
 	}
-	public void replacePlayerObjects(ArrayList<GameObject> _gameObjects) {
+	public void replacePlayerObjects(ArrayList<GameObject> _gameObjects)
+	{
 		playerGameObjects = _gameObjects;
 	}
 	
-	public void replaceBoundingBoxes(ArrayList<BoundingBox> _boundingBoxes) {
+	public void replaceBoundingBoxes(ArrayList<BoundingBox> _boundingBoxes) 
+	{
 		gameBoundingBoxes = _boundingBoxes;
 	}
 	
@@ -79,7 +84,7 @@ public class GameManager extends ProcessingEntity{
 	public void UpdateAll() {
 		parent.pushMatrix();
 		parent.translate(offset.x, offset.y);
-		parent.background(background);
+		parent.background(background_1,background_2,background_3);
 		for(int i = 0; i < gameObjects.size(); i++) {
 			GameObject g = gameObjects.get(i);
 			g.update();

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import game_engine_2d.GameManager;
 import game_engine_2d.GameObject;
 import game_engine_2d.Tile;
-import game_engine_2d.GUI.menuMaker;
+import game_engine_2d.GUI.MenuMaker;
 import game_engine_2d.data_management.*;
 import processing.core.PApplet;
 import processing.data.JSONArray;
@@ -17,7 +17,7 @@ public abstract class MainMenu  extends GameObject{
 	
 	private JSONArray menuItems;
 	private DataManager dataManager;
-	public menuMaker mm;
+	public MenuMaker mm;
 	GameManager gameManager;
 	private String menu_file = "level_edit_menu.json";
 	public MainMenu(PApplet p) {
@@ -44,10 +44,10 @@ public abstract class MainMenu  extends GameObject{
 	@Override
 	public void render() {
 		for(int i = 0; i < this.menuItems.size(); i++) {
-			//JSONObject menu = this.menuItems.getJSONObject(i);
-			ArrayList menuList = mm.menu_options;
+			
+			ArrayList menuList = mm.menuItems;
 			String name  = (String) menuList.get(i);
-			//parent.text(i + ": " + name, parent.width/2 - 40, 120 + i * 30);
+			
 		}
 	}
 	
