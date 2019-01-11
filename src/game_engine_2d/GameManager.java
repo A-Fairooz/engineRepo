@@ -1,10 +1,10 @@
 package game_engine_2d;
 import processing.core.*;
 import java.util.ArrayList;
+import processing.core.PImage;
 
 import game_engine_2d.BoundingBox;
-//import game_engine_2d.BasicSpatialGrid;
-import game_engine_2d.data_management.*;
+
 public class GameManager extends ProcessingEntity{
 	
 	
@@ -20,7 +20,7 @@ public class GameManager extends ProcessingEntity{
 	public static PVector offset = new PVector(0,0);
 	public static PVector screenOffset = new PVector(0,0);
 	public static boolean newGame;	
-	public DataManager dataManager;
+	public PImage skyImage;
 	
 	
 	public GameManager(PApplet p) {
@@ -32,12 +32,15 @@ public class GameManager extends ProcessingEntity{
 	this.Intialise();
 	}
 	
+	
+	//Reloads all objects within the current game screen
 	public void Intialise() {
-		dataManager = new DataManager(parent);
+	
 		gameObjects = new ArrayList<GameObject>();
 		playerGameObjects = new ArrayList<GameObject>();
 		GUIGameObjects = new ArrayList<GameObject>();
 		gameBoundingBoxes = new ArrayList<BoundingBox>();
+		
 		
 	}
 
@@ -78,6 +81,7 @@ public class GameManager extends ProcessingEntity{
 		for(int i = 0; i < gameObjects.size(); i++) {
 			GameObject g = gameObjects.get(i);
 			g.start();
+			//skyImage = parent.loadImage("FlappyBird.jpg");
 		}
 		
 	}
@@ -85,6 +89,7 @@ public class GameManager extends ProcessingEntity{
 		parent.pushMatrix();
 		parent.translate(offset.x, offset.y);
 		parent.background(background_1,background_2,background_3);
+
 		for(int i = 0; i < gameObjects.size(); i++) {
 			GameObject g = gameObjects.get(i);
 			g.update();
@@ -119,6 +124,7 @@ public class GameManager extends ProcessingEntity{
 			g.mousePressed();
 		}
 	}
+	//Return the mouse's position on the X axis, Y axis and the button Pressed
 	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 		for(int i = 0; i < playerGameObjects.size(); i++) {
 			GameObject g = playerGameObjects.get(i);

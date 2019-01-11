@@ -1,4 +1,4 @@
-package Platformer;
+package Game_FlappyBird;
 
 import game_engine_2d.Physics2D;
 import game_engine_2d.*;

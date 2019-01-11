@@ -1,4 +1,4 @@
-package Platformer;
+package Game_FlappyBird;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -12,7 +12,7 @@ import processing.core.PApplet;
 
 public class StartScreen extends GameScreen {
 	
-	MenuMaker MenuMaker;
+	MenuMaker menuMaker;
 	FlappyBird gameLevel;
 	public StartScreen(PApplet p, GameManager _gameManager) {
 		super(p, _gameManager);
@@ -23,10 +23,11 @@ public class StartScreen extends GameScreen {
 	public void start() {
 		super.start();
 		
-		MenuMaker = new MenuMaker(parent, this.exitScreens);
-		MenuMaker.add_menu_item("Quit");
-		MenuMaker.start();
-		this.gameObjects.add(MenuMaker);
+		menuMaker = new MenuMaker(parent, this.exitScreens);
+		menuMaker.add_menu_item("Quit");
+		menuMaker.start();
+		this.menuGameObjects.add(menuMaker);	
+		this.gameObjects.add(menuMaker);
 		this.ready = true;
 		this.activate();
 	}

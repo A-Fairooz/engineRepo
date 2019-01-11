@@ -1,16 +1,15 @@
-package Platformer;
+package Game_FlappyBird;
 
 import game_engine_2d.*;
 import processing.core.PApplet;
 import java.util.ArrayList;
-import game_engine_2d.data_management.*;
+
 
 
 public class Launcher extends BaseLauncher {
 	public boolean started = false;
 	int waiting = 0;
-	
-	DataManager dataManager;
+
 	GameScreen activeScreen;
 	
 	

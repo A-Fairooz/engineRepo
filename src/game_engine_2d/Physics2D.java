@@ -15,9 +15,9 @@ public class Physics2D extends GameComponent{
 	int frameDelay = 2;
 	private PVector velocity = new PVector(0,0);
 	public BoxCollider2D boxCollider2D;
-	float gravityForce = 0.3f;
+	float gravityForce = 1f;
 	public float speedF = 0.5f;
-	public float maxSpeed = 5f;
+	public float maxSpeed = 20f;
 	public int collisionCount = 0;
 	
 	public Physics2D(GameObject g) {super(g);}	
@@ -112,11 +112,14 @@ public class Physics2D extends GameComponent{
 
 	private void gravityOn() 
 	{
-		this.velocity.y +=gravityForce;
+		this.velocity.y += gravityForce/2;
 		this.velocity.x = speedF;
 		if(velocity.y >= maxSpeed) 
 		{
 			this.velocity.y = maxSpeed;
 		}
 	}	
+	public void reset() {
+		velocity = new PVector(0,0);
+	}
 }

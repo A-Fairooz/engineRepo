@@ -83,7 +83,7 @@ public class MenuMaker extends GameObject{
 			}else {
 				textPosition = new PVector(i * w +this.padding,h*0.7f);
 			}
-			parent.text(i+1 + " : " + (String)this.menuItems.get(i), textPosition.x, textPosition.y);
+			parent.text((String)this.menuItems.get(i), textPosition.x, textPosition.y);
 		}
 		parent.popMatrix();
 	}

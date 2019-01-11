@@ -1,5 +1,5 @@
+import Game_FlappyBird.Launcher;
 import processing.core.PApplet;
-import Platformer.Launcher;
 
 public class Main extends PApplet{
 	public static void main(String[] args) {		

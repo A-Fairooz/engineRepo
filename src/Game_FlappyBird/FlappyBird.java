@@ -1,11 +1,11 @@
-package Platformer;
+package Game_FlappyBird;
 import java.util.Random;
 import game_engine_2d.Camera2D;
 import game_engine_2d.GameManager;
 import game_engine_2d.GameScreen;
 import game_engine_2d.GUI.MenuMaker;
 import game_engine_2d.Tile;
-import game_engine_2d.data_management.DataManager;
+
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
@@ -15,35 +15,38 @@ public class FlappyBird extends GameScreen{
 	//Variables
 	MenuMaker MenuMaker;
 	boolean isReset;
-	
+	Player player;
+	Camera2D cam;
 	public FlappyBird(PApplet p, GameManager _gameManager) 
 	{
 		super(p, _gameManager);
 		this.name = "Flappy Bird";		
 	}
-	
-	private DataManager dataManager;	
-	
+
 	@Override
 	public void start() 
 	{
-		if(!this.ready) 
+		if(this.ready) 
 		{
+			cam.reset();
+			player.reset();
+		}else {
 		super.start();
 		MenuMaker = new MenuMaker(parent,this.exitScreens);		
 		MenuMaker.start();
-		this.menuGameObjects.add(MenuMaker);
+		this.menuGameObjects.add(MenuMaker);		
 		isReset = false;
-		Player player = new Player(parent, 20, parent.height, 60, 60);		
+		player = new Player(parent, 20, parent.height, 60, 60);		
 		player.start();
 		this.gm.addObject(player);
 		this.gm.addPlayerGameObjects(player);
-		Camera2D cam = new Camera2D(parent, player, 0);
+		
+		cam = new Camera2D(parent, player, 0);
 		cam.cameraOffset.y = 0;
 		this.gm.addObject(cam);			
-		if(gm.newGame == true) 
+		if(GameManager.newGame == true) 
 			{			
-			for(int i = 0; i < 8; i++) 
+			for(int i = 0; i < 100; i++) 
 				{
 				//Randomiser randomises the height of the pipes
 				Random rnd = new Random();
@@ -58,22 +61,29 @@ public class FlappyBird extends GameScreen{
 		this.activate();		
 	}
 	
+	
+	
 	@Override
 	public void keyPressed(char key, int keyCode) 
 	{
-		//User Key Inputs
+		//check for users Key Inputs
 		if(key == '1') 
 		{
 			this.swapTo(0);
 			
-			gm.screenOffset.x = 0;
-			gm.screenOffset.y = 0;
 		}
 		if(isReset) {
 			isReset = false;
 			this.swapTo(0);
 		}
 	}
+ 	@Override
+ 	public void activate() {
+ 		super.activate();
+ 		if(player != null) {
+ 			player.start();
+ 		}
+ 	}
  	@Override
 	public void keyReleased(char key, int keyCode) {}
  	@Override

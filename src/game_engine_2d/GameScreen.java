@@ -2,7 +2,7 @@ package game_engine_2d;
 
 import java.util.ArrayList;
 import game_engine_2d.BoundingBox;
-import game_engine_2d.data_management.DataManager;
+
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
@@ -56,13 +56,13 @@ public abstract class GameScreen extends ProcessingEntity{
 	}
 	
 	public void swapTo(int i) {
-		parent.println("From " + this.name + " swapTo " + i + " => ");
+		
 		if(this.exitScreen < this.exitScreens.size()) {
 			this.exitScreen = i;
 			this.swap_screen = this.exitScreens.get(this.exitScreen);
-
+			//this.swap_screen.activate();
 		}else {
-			parent.println("Error: exitScreen out of range");
+			parent.println("SCREEN OUT OF RANGE");
 
 		}
 	
@@ -76,57 +76,8 @@ public abstract class GameScreen extends ProcessingEntity{
 		this.gm.replaceBoundingBoxes(this.gameBoundingBoxes);
 		this.activated = true;
 		this.gm.StartAll();
-		parent.println("activated " + this.name);
-	}
-	
-	protected boolean load_tile_json() {
-	
-		try {
-			this.gm.dataManager = new DataManager(parent);
-			this.gm.dataManager.load_data();
-		}
-		catch(Exception E) {
-			return false;
-		}
 		
-			JSONArray tiles;
-			try {
-				tiles = this.gm.dataManager.game_data.getJSONArray("level1");
-			}
-			catch(Exception E) {
-				return false;
-			}
-			
-			for(int i = 0; i < tiles.size(); i ++) {
-				JSONObject tile;
-				try {
-					tile = tiles.getJSONObject(i);
-				}
-				catch(Exception E) {
-					continue;
-				}
-			int x = tile.getInt("x");
-			int y = tile.getInt("y");
-			int tw = tile.getInt("w");
-			int th = tile.getInt("h");
-			int tc_0 = tile.getInt("tColour_0");
-			int tc_1= tile.getInt("tColour_1");
-			int tc_2 = tile.getInt("tColour_2");
-			
-			Tile platform = new Tile(parent, x, y, tw, th, tc_0,tc_1,tc_2);
-			platform.start();
-			this.gameObjects.add(platform);
-			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
-		}
-			return true;
 	}
 
-
-
-
-	
-	
-	
-	
 
 }

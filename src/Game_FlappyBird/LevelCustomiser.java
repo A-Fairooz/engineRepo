@@ -1,4 +1,4 @@
-package Platformer;
+package Game_FlappyBird;
 
 import game_engine_2d.Camera2D;
 import game_engine_2d.GameManager;
@@ -6,7 +6,7 @@ import game_engine_2d.GameObject;
 import game_engine_2d.GameScreen;
 import game_engine_2d.Tile;
 import game_engine_2d.GUI.MenuMaker;
-import game_engine_2d.data_management.DataManager;
+//import game_engine_2d.data_management.DataManager;
 import processing.core.PApplet;
 import processing.core.PVector;
 import processing.data.JSONArray;
@@ -41,8 +41,6 @@ public class LevelCustomiser extends GameScreen {
 		menuMaker.add_menu_item("Change Colour to Red");
 		menuMaker.add_menu_item("Change Colour to Green");
 		menuMaker.add_menu_item("Change Colour to Blue");
-		menuMaker.add_menu_item("S - save level");
-		menuMaker.add_menu_item("L - load level");
 		menuMaker.add_menu_item("Quit");
 		menuMaker.start();
 		this.menuGameObjects.add(menuMaker);
@@ -93,22 +91,17 @@ public class LevelCustomiser extends GameScreen {
 		else if(key == '4' && inEditor) 
 		{
 			//change the platform colour to blue
+			//parent.image(gm.skyImage, parent.height/2, 0);
 			setColour(0,0,255,false);
 			this.gm.background_1 = 96;
 			this.gm.background_2 = 218;
 			this.gm.background_3 = 255;
-		}
-		
-		else if (Character.toUpperCase(key) == 'S')
-		{
 			
-			this.gm.dataManager.save_tiles_json(this.gameObjects, "level" + levelID);
-
-		} else if (Character.toUpperCase(key) == 'L')
-		{
-			this.load_tile_json();
 		}
-
+		else if(key == '5' && inEditor) 
+		{
+		parent.exit();
+		}
 	}
 
 	public void setColour(int c1, int c2, int c3, boolean isPipe) 
